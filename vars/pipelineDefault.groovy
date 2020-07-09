@@ -71,8 +71,9 @@ def call(Map stageParams) {
                 script{
                     echo "entrou aqui"
                     if (stageParams.RUN_PRE_BUILD == 'true'){
-                        echo "entrou aqui"
-                        Map map = git.prebuild()
+                        Map map = [:]
+                        echo "criou o mapa"
+                        map = git.prebuild()
                       newVersion = map.newVersion
                       RUN_DEPLOY = map.RUN_DEPLOY
                     }
