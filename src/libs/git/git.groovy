@@ -16,7 +16,7 @@ def void commitMessage(){
 
 def void checkbranchName(){
     script {
-        if (BRANCH_NAME.startsWith("master") || BRANCH_NAME.startsWith("feature") || BRANCH_NAME.startsWith("develop") || BRANCH_NAME.startsWith("release") || BRANCH_NAME.startsWith("hotfix")) {
+        if ( GIT_BRANCH == ("master")) {
             echo "***** Let's go to the Build *****"
 
         } else {
