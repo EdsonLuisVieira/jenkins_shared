@@ -77,7 +77,7 @@ def call(Map stageParams) {
                       RUN_DEPLOY = map.RUN_DEPLOY
                     }
                     else{
-                        echo "skpes Pre build"
+                        echo "pulou Pre build"
                     }    
                 }
             }
@@ -90,8 +90,12 @@ def call(Map stageParams) {
         stage('upload cloudformation templates and parameter files'){
             steps {
                 script{
-                    uploadTemplate(stageParams.S3_BUCKET_TEMPLATE,newVersion)
-                    uploadParameter(stageParams.S3_BUCKET_TEMPLATE,newVersion)
+                    if (stageParams.RUN_PRE_BUILD){
+                        uploadTemplate(stageParams.S3_BUCKET_TEMPLATE,newVersion)
+                        uploadParameter(stageParams.S3_BUCKET_TEMPLATE,newVersion)
+                    } else {
+                        echo "pulou upload"
+                    }
                 }
             }
         }
