@@ -21,8 +21,8 @@ def call(Map stageParams=[:]) {
         stage('echo'){
             steps{
                 script{
-                    echo ${stageParams.RUN_PRE_BUILD}
-                    echo ${stageParams.RUN_POST_BUILD}
+                    echo stageParams.RUN_PRE_BUILD
+                    echo stageParams.RUN_POST_BUILD
                     echo stageParams.RUN_COMPILE
                     echo stageParams.RUN_CHECKS
                     echo stageParams.S3_BUCKET_ARTIFACT
