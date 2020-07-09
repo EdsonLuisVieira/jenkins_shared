@@ -11,6 +11,5 @@ pipelineDefault {
         build_name = "teste-develop"
         arquitetura = "dev"
         jobid = "222.222.222.22"
-        arqu = "111"
         path = "developer"
 }

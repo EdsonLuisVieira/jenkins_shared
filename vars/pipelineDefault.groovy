@@ -40,7 +40,7 @@ def call(body) {
         stage('Pre-Build CheckList'){
             steps{
                 script{
-                    if (RUN_CHECKS){
+                    if (env.RUN_CHECKS){
                       git.checkCommitBehind()  
                     }
                     else{
@@ -51,13 +51,13 @@ def call(body) {
         }
         stage('compile'){
             steps{
-                script{python.build(build_name)}
+                script{python.build(env.build_name)}
             }
         }
         stage('Pre-Build'){
             steps{
                 script{
-                    if (RUN_PRE_BUILD){
+                    if (env.RUN_PRE_BUILD){
                       newVersion = git.preBuild()  
                     }
                     else{
@@ -68,21 +68,21 @@ def call(body) {
         }
         stage('sam'){
             steps {
-                script {cf.sam(S3_BUCKET_ARTIFACT)}
+                script {cf.sam(env.S3_BUCKET_ARTIFACT)}
             }
         }
         stage('upload cloudformation templates and parameter files'){
             steps {
                 script{
-                    uploadTemplate(S3_BUCKET_TEMPLATE,newVersion)
-                    uploadParameter(S3_BUCKET_TEMPLATE,newVersion)
+                    uploadTemplate(env.S3_BUCKET_TEMPLATE,newVersion)
+                    uploadParameter(env.S3_BUCKET_TEMPLATE,newVersion)
                 }
             }
         }
         stage('Deploy environment'){
             steps{
                 script{
-                    rundeck.rundeck(jobid,arquitetura,newVersion,path)
+                    rundeck.rundeck(env.jobid,env.arquitetura,newVersion,env.path)
                 }
             }
         }
@@ -90,7 +90,7 @@ def call(body) {
         post {
             success {
                 script{
-                    notify.notifyBuild('SUCCESSFUL',channel,newVersion,path)
+                    notify.notifyBuild('SUCCESSFUL',env.channel,newVersion,env.path)
                     echo "success"
                 }
             }
