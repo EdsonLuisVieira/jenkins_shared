@@ -26,7 +26,7 @@ def call(body) {
             steps{
                 script{
                     echo stageParams.RUN_PRE_BUILD
-                    echo RUN_PRE_BUILD
+                    echo env.RUN_PRE_BUILD
                     echo "${RUN_PRE_BUILD}"
                     echo stageParams.RUN_POST_BUILD
                     echo stageParams.RUN_COMPILE
