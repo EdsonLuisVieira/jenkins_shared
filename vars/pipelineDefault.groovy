@@ -22,6 +22,19 @@ def call(body) {
     }
 
     stages {
+        stage('echo'){
+            echo env.RUN_PRE_BUILD
+            echo env.RUN_POST_BUILD
+            echo env.RUN_COMPILE
+            echo env.RUN_CHECKS
+            echo env.S3_BUCKET_ARTIFACT
+            echo env.S3_BUCKET_TEMPLATE
+            echo env.build_name
+            echo env.arquitetura
+            echo env.jobid
+            echo env.path
+
+        }
         stage('notify'){
             steps{
                 script{notify.notifyBuild('STARTED')}
