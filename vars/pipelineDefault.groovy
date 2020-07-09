@@ -1,7 +1,11 @@
 #!groovy
-def call(Map stageParams=[:]) {
+def call(body) {
     //Parser Configuration Received from Pipeline
-
+    def stageParams = [:]
+    body.resolveStrategy = Closure.DELEGATE_FIRST
+    body.delegate = stageParams
+    body()
+    
     //Instanciate Objects from Libs
     def git = new libs.git.git()
     def notify = new libs.notify.slack()
