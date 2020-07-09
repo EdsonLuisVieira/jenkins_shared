@@ -90,11 +90,11 @@ def call(body) {
     }
         post {
             success {
-                notifyBuild('SUCCESSFUL',channel,newVersion,path)
+                notify.notifyBuild('SUCCESSFUL',channel,newVersion,path)
                 echo "success"
             }
             failure {
-                notifyBuild('FAILED',channel,newVersion,path)
+                notify.notifyBuild('FAILED',channel,newVersion,path)
                 echo "failure"
             }
             always {
