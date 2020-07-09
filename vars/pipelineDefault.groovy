@@ -90,12 +90,16 @@ def call(body) {
     }
         post {
             success {
-                notify.notifyBuild('SUCCESSFUL',channel,newVersion,path)
-                echo "success"
+                script{
+                    notify.notifyBuild('SUCCESSFUL',channel,newVersion,path)
+                    echo "success"
+                }
             }
             failure {
-                notify.notifyBuild('FAILED')
-                echo "failure"
+                script{
+                    notify.notifyBuild('FAILED')
+                    echo "failure"
+                }
             }
             always {
                 deleteDir()
