@@ -94,7 +94,7 @@ def call(body) {
                 echo "success"
             }
             failure {
-                notify.notifyBuild('FAILED',channel,newVersion,path)
+                notify.notifyBuild('FAILED')
                 echo "failure"
             }
             always {
