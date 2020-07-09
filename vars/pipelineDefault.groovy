@@ -52,7 +52,7 @@ def call(Map stageParams) {
         stage('Pre-Build CheckList'){
             steps{
                 script{
-                    if (stageParams.RUN_CHECKS){
+                    if (stageParams.RUN_CHECKS == 'true'){
                       git.checkCommitBehind()  
                     }
                     else{
@@ -70,7 +70,7 @@ def call(Map stageParams) {
             steps{
                 script{
                     echo "entrou aqui"
-                    if (stageParams.RUN_PRE_BUILD){
+                    if (stageParams.RUN_PRE_BUILD == 'true'){
                         echo "entrou aqui"
                         Map map = git.prebuild()
                       newVersion = map.newVersion
@@ -90,7 +90,7 @@ def call(Map stageParams) {
         stage('upload cloudformation templates and parameter files'){
             steps {
                 script{
-                    if (stageParams.RUN_PRE_BUILD){
+                    if (stageParams.RUN_PRE_BUILD == 'true'){
                         uploadTemplate(stageParams.S3_BUCKET_TEMPLATE,newVersion)
                         uploadParameter(stageParams.S3_BUCKET_TEMPLATE,newVersion)
                     } else {
@@ -102,7 +102,7 @@ def call(Map stageParams) {
         stage('Deploy environment'){
             steps{
                 script{
-                    if (RUN_DEPLOY){
+                    if (RUN_DEPLOY == 'true'){
                         rundeck.rundeck(stageParams.jobid,stageParams.arquitetura,newVersion,stageParams.path)
                     }
                 }
