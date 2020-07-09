@@ -4,6 +4,7 @@ package libs.cf;
 def void sam(String S3_BUCKET_ARTIFACT){
     script{
         sh "aws cloudformation package --template-file cloudformation/template/cloudformation.yml --s3-bucket ${S3_BUCKET_ARTIFACT} --output-template-file cloudformation/template/cloudformation.yml"
+    }
 }
 
 def void uploadTemplate(String S3_BUCKET_TEMPLATE, String newVersion) {
