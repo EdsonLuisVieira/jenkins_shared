@@ -25,16 +25,16 @@ def call(body) {
         stage('echo'){
             steps{
                 script{
-                    echo "${RUN_PRE_BUILD}"
-                    echo "${RUN_POST_BUILD}"
-                    echo "${RUN_COMPILE}"
-                    echo "${RUN_CHECKS}"
-                    echo "${S3_BUCKET_ARTIFACT}"
-                    echo "${S3_BUCKET_TEMPLATE}"
-                    echo "${build_name}"
-                    echo "${arquitetura}"
-                    echo "${jobid}"
-                    echo "${path}"
+                    echo RUN_PRE_BUILD
+                    echo RUN_POST_BUILD
+                    echo RUN_COMPILE
+                    echo RUN_CHECKS
+                    echo S3_BUCKET_ARTIFACT
+                    echo S3_BUCKET_TEMPLATE
+                    echo build_name
+                    echo arquitetura
+                    echo jobid
+                    echo path
                 }
             }
         }
