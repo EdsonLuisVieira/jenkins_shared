@@ -1,10 +1,6 @@
 #!groovy
-def call(body) {
+def call(Map stageParams) {
     //Parser Configuration Received from Pipeline
-    def stageParams = [:]
-    body.resolveStrategy = Closure.DELEGATE_FIRST
-    body.delegate = stageParams
-    body()
     
     //Instanciate Objects from Libs
     def git = new libs.git.git()
@@ -25,6 +21,7 @@ def call(body) {
         stage('echo'){
             steps{
                 script{
+                    stageParams
                     echo stageParams.RUN_PRE_BUILD
                     echo env.RUN_PRE_BUILD
                     echo "${RUN_PRE_BUILD}"
