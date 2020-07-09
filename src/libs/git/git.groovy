@@ -16,7 +16,7 @@ def void commitMessage(){
 
 def void checkbranchName(){
     script {
-        if ( GIT_BRANCH == ("master")) {
+        if ( GIT_BRANCH == ("origin/master")) {
             echo "***** Let's go to the Build *****"
 
         } else {
