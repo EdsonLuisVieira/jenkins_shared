@@ -1,5 +1,5 @@
 #!groovy
-package libs.python;
+package libs.deploy;
 
 def void rundeck(String jobid, String arquitetura, String newVersion = '0.0.0', String = 'default') {
     script {
