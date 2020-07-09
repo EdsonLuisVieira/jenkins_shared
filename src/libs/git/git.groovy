@@ -88,6 +88,7 @@ def void bump_version_tag(String newVersion) {
 def Map preBuild() {
   steps {
       script {
+          echo "entrou na funcao"
           def Map resultPreBuild =[:]
           REPO_NAME_STACK = sh(script: '''
                                      git remote show -n origin | grep Fetch | sed -r 's,.*:(.*).git,\\1,' |tr -d '\n'

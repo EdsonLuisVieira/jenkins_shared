@@ -69,6 +69,7 @@ def call(Map stageParams) {
         stage('Pre-Build'){
             steps{
                 script{
+                    echo "entrou aqui"
                     if (stageParams.RUN_PRE_BUILD){
                       def map = git.preBuild()
                       newVersion = map.newVersion
