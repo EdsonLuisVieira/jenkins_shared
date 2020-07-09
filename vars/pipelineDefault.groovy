@@ -70,7 +70,9 @@ def call(Map stageParams) {
             steps{
                 script{
                     if (stageParams.RUN_PRE_BUILD){
-                      newVersion = git.preBuild()  
+                      def map = git.preBuild()
+                      newVersion = map.newVersion
+                      RUN_DEPLOY = map.RUN_DEPLOY
                     }
                     else{
                         echo "skpes Pre build"
@@ -94,7 +96,9 @@ def call(Map stageParams) {
         stage('Deploy environment'){
             steps{
                 script{
-                    rundeck.rundeck(stageParams.jobid,stageParams.arquitetura,newVersion,stageParams.path)
+                    if (RUN_DEPLOY){
+                        rundeck.rundeck(stageParams.jobid,stageParams.arquitetura,newVersion,stageParams.path)
+                    }
                 }
             }
         }

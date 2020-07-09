@@ -85,33 +85,30 @@ def void bump_version_tag(String newVersion) {
   }
 }
 
-def String preBuild() {
+def Map preBuild() {
   steps {
       script {
-          env.REPO_NAME_STACK = sh(script: '''
+          def Map resultPreBuild =[:]
+          REPO_NAME_STACK = sh(script: '''
                                      git remote show -n origin | grep Fetch | sed -r 's,.*:(.*).git,\\1,' |tr -d '\n'
                                      ''', returnStdout: true).trim()
-          env.stack_name = sh(script: '''
+          stack_name = sh(script: '''
                                echo $(git remote -v |grep fetch |sed -r 's,.*\\.com:[^/]*/(.*)\\.git.*,\\1,')
                                ''', returnStdout: true).trim()
-          env.RUN_BUILD_BRANCH = false
-          env.RUN_BUILD_MASTER = false
-          if (BRANCH_NAME.startsWith("master")) {
+          if (GIT_BRANCH == ("origin/master")) {
               echo "***** PERFORMING STEPS ON MASTER *****"
-              env.RUN_BUILD_MASTER = true
-              env.environment = "prd"
-              newVersion = updateVersion(true)
-              env.RUN_DEPLOY = false
+              resultPreBuild["newVersion"] = updateVersion(true)
+              resultPreBuild["RUN_DEPLOY"] = "false"
+
           }
-          if (BRANCH_NAME.startsWith("develop")) {
+          if (GIT_BRANCH == ("origin/develop")) {
               echo "***** PERFORMING STEPS ON MASTER *****"
-              env.environment = "dev"
-              env.RUN_BUILD_BRANCH = true
-              newVersion = updateVersion(false)
-              env.RUN_DEPLOY = true
+              resultPreBuild["newVersion"] = updateVersion(false)
+              resultPreBuild["RUN_DEPLOY"] = "true"
           }
           echo "***** FINISHED PRE-BUILD STEP *****"
-          return newVersion
+
+          return resultPreBuild
       }
   }
 }
