@@ -21,7 +21,6 @@ def call(Map stageParams) {
         stage('echo'){
             steps{
                 script{
-                    stageParams
                     echo stageParams.RUN_PRE_BUILD
                     echo env.RUN_PRE_BUILD
                     echo "${RUN_PRE_BUILD}"
