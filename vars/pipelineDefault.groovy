@@ -74,8 +74,8 @@ def call(Map stageParams) {
                         Map map = [:]
                         echo "criou o mapa"
                         map = git.prebuild()
-                      newVersion = map.newVersion
-                      RUN_DEPLOY = map.RUN_DEPLOY
+                        newVersion = map.newVersion
+                        RUN_DEPLOY = map.RUN_DEPLOY
                     }
                     else{
                         echo "pulou Pre build"
@@ -85,7 +85,9 @@ def call(Map stageParams) {
         }
         stage('sam'){
             steps {
-                script {cf.sam(stageParams.S3_BUCKET_ARTIFACT)}
+                if (stageParams.sam == 'true'){
+                    script {cf.sam(stageParams.S3_BUCKET_ARTIFACT)}
+                }
             }
         }
         stage('upload cloudformation templates and parameter files'){
