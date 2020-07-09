@@ -85,7 +85,7 @@ def void bump_version_tag(String newVersion) {
   }
 }
 
-def Map preBuild() {
+def Map prebuild() {
   steps {
       script {
           echo "entrou na funcao"
@@ -108,7 +108,6 @@ def Map preBuild() {
               resultPreBuild["RUN_DEPLOY"] = "true"
           }
           echo "***** FINISHED PRE-BUILD STEP *****"
-
           return resultPreBuild
       }
   }

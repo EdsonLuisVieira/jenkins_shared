@@ -72,7 +72,7 @@ def call(Map stageParams) {
                     echo "entrou aqui"
                     if (stageParams.RUN_PRE_BUILD){
                         echo "entrou aqui"
-                        map = git.preBuild()
+                        Map map = git.prebuild()
                       newVersion = map.newVersion
                       RUN_DEPLOY = map.RUN_DEPLOY
                     }
