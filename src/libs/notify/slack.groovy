@@ -1,7 +1,8 @@
 #!groovy
-@Grab(net.sf.json.JSONArray)
-@Grab(net.sf.json.JSONObject)
 package libs.notify
+import net.sf.json.JSONArray
+import net.sf.json.JSONObject
+
 
 def void notifyBuild(String buildStatus = 'STARTED', String channel = 'jenkins' , String newVersion = '0.0.0', String path = 'default') {
     buildStatus = buildStatus ?: 'SUCCESSFUL'
