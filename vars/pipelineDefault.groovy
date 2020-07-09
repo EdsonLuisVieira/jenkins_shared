@@ -87,6 +87,7 @@ def call(body) {
                 }
             }
         }
+    }
         post {
             success {
                 notifyBuild('SUCCESSFUL',channel,newVersion,path)
@@ -101,6 +102,5 @@ def call(body) {
             }
         }
   
-        }
     }
 }
