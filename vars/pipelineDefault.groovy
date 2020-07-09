@@ -25,16 +25,16 @@ def call(body) {
         stage('echo'){
             steps{
                 script{
-                    echo env.RUN_PRE_BUILD
-                    echo env.RUN_POST_BUILD
-                    echo env.RUN_COMPILE
-                    echo env.RUN_CHECKS
-                    echo env.S3_BUCKET_ARTIFACT
-                    echo env.S3_BUCKET_TEMPLATE
-                    echo env.build_name
-                    echo env.arquitetura
-                    echo env.jobid
-                    echo env.path
+                    echo "${RUN_PRE_BUILD}"
+                    echo "${RUN_POST_BUILD}"
+                    echo "${RUN_COMPILE}"
+                    echo "${RUN_CHECKS}"
+                    echo "${S3_BUCKET_ARTIFACT}"
+                    echo "${S3_BUCKET_TEMPLATE}"
+                    echo "${build_name}"
+                    echo "${arquitetura}"
+                    echo "${jobid}"
+                    echo "${path}"
                 }
             }
         }
