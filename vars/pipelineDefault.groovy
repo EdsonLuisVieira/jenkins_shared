@@ -1,5 +1,5 @@
 #!groovy
-def call(Map stageParams = [:]) {
+def call(Map stageParams=[:]) {
     //Parser Configuration Received from Pipeline
 
     //Instanciate Objects from Libs
