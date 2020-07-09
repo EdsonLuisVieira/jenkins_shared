@@ -100,6 +100,12 @@ def call(body) {
                     echo "failure"
                 }
             }
+            aborted {
+                script{
+                    notify.notifyBuild('ABORTED')
+                    echo "failure"
+                }
+            }
             always {
                 deleteDir()
             }
