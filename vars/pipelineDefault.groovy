@@ -22,6 +22,11 @@ def call(body) {
     }
 
     stages {
+        stage('notify'){
+            steps{
+                script{notify.notifyBuild('STARTED')}
+            }
+        }
         stage('Check commit message') {
             steps{
                 script{ git.commitMessage()}
@@ -31,12 +36,6 @@ def call(body) {
             steps{
                 script{ git.checkbranchName()}
             }
-        }
-        stage('notify'){
-            steps{
-                script{notify.notifyBuild('STARTED')}
-            }
-
         }
         stage('Pre-Build CheckList'){
             steps{
