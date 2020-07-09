@@ -1,10 +1,6 @@
 #!groovy
-def call(body) {
+def call(Map stageParams) {
     //Parser Configuration Received from Pipeline
-    def config = [:]
-    body.resolveStrategy = Closure.DELEGATE_FIRST
-    body.delegate = config
-    body()
 
     //Instanciate Objects from Libs
     def git = new libs.git.git()
@@ -25,16 +21,16 @@ def call(body) {
         stage('echo'){
             steps{
                 script{
-                    echo RUN_PRE_BUILD
-                    echo RUN_POST_BUILD
-                    echo RUN_COMPILE
-                    echo RUN_CHECKS
-                    echo S3_BUCKET_ARTIFACT
-                    echo S3_BUCKET_TEMPLATE
-                    echo build_name
-                    echo arquitetura
-                    echo jobid
-                    echo path
+                    echo ${stageParams.RUN_PRE_BUILD}
+                    echo ${stageParams.RUN_POST_BUILD}
+                    echo stageParams.RUN_COMPILE
+                    echo stageParams.RUN_CHECKS
+                    echo stageParams.S3_BUCKET_ARTIFACT
+                    echo stageParams.S3_BUCKET_TEMPLATE
+                    echo stageParams.build_name
+                    echo stageParams.arquitetura
+                    echo stageParams.jobid
+                    echo stageParams.path
                 }
             }
         }
@@ -56,7 +52,7 @@ def call(body) {
         stage('Pre-Build CheckList'){
             steps{
                 script{
-                    if (env.RUN_CHECKS){
+                    if (stageParams.RUN_CHECKS){
                       git.checkCommitBehind()  
                     }
                     else{
@@ -67,7 +63,7 @@ def call(body) {
         }
         stage('compile'){
             steps{
-                script{python.build(env.build_name)}
+                script{python.build(stageParams.build_name)}
             }
         }
         stage('Pre-Build'){
