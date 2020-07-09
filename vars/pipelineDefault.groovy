@@ -21,6 +21,7 @@ def call(Map stageParams) {
         stage('echovars'){
             steps{
                 script{
+                    echo stageParams.RUN_PRE_BUILD
                     echo stageParams.RUN_POST_BUILD
                     echo stageParams.RUN_COMPILE
                     echo stageParams.RUN_CHECKS
@@ -68,7 +69,7 @@ def call(Map stageParams) {
         stage('Pre-Build'){
             steps{
                 script{
-                    if (env.RUN_PRE_BUILD){
+                    if (stageParams.RUN_PRE_BUILD){
                       newVersion = git.preBuild()  
                     }
                     else{
@@ -79,21 +80,21 @@ def call(Map stageParams) {
         }
         stage('sam'){
             steps {
-                script {cf.sam(env.S3_BUCKET_ARTIFACT)}
+                script {cf.sam(stageParams.S3_BUCKET_ARTIFACT)}
             }
         }
         stage('upload cloudformation templates and parameter files'){
             steps {
                 script{
-                    uploadTemplate(env.S3_BUCKET_TEMPLATE,newVersion)
-                    uploadParameter(env.S3_BUCKET_TEMPLATE,newVersion)
+                    uploadTemplate(stageParams.S3_BUCKET_TEMPLATE,newVersion)
+                    uploadParameter(stageParams.S3_BUCKET_TEMPLATE,newVersion)
                 }
             }
         }
         stage('Deploy environment'){
             steps{
                 script{
-                    rundeck.rundeck(env.jobid,env.arquitetura,newVersion,env.path)
+                    rundeck.rundeck(stageParams.jobid,stageParams.arquitetura,newVersion,stageParams.path)
                 }
             }
         }
@@ -101,7 +102,7 @@ def call(Map stageParams) {
         post {
             success {
                 script{
-                    notify.notifyBuild('SUCCESSFUL',env.channel,newVersion,env.path)
+                    notify.notifyBuild('SUCCESSFUL',stageParams.channel,newVersion,stageParams.path)
                     echo "success"
                 }
             }
