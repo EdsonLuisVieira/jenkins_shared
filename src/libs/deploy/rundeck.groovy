@@ -1,7 +1,7 @@
 #!groovy
 package libs.deploy;
 
-def void rundeck(String jobid, String arquitetura, String newVersion = '0.0.0', String = 'default') {
+def void rundeck(String jobid, String arquitetura, String newVersion = '0.0.0', String folder = 'default') {
     script {
         step([$class: "RundeckNotifier",
             includeRundeckLogs: true,
@@ -11,7 +11,7 @@ def void rundeck(String jobid, String arquitetura, String newVersion = '0.0.0', 
                     Arquitetura=${arquitetura}
                     template=cloudformation.yml
                     version=${newVersion}
-                    path=${path}
+                    path=${folder}
                     """,
             rundeckInstance: "rundeckTest",
             shouldFailTheBuild: true,

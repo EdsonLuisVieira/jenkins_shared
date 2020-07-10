@@ -7,16 +7,16 @@ def void sam(String S3_BUCKET_ARTIFACT){
     }
 }
 
-def void uploadTemplate(String S3_BUCKET_TEMPLATE, String newVersion, String path) {
+def void uploadTemplate(String S3_BUCKET_TEMPLATE, String newVersion, String folder) {
     script{
-        echo "upload template to s3://${S3_BUCKET_TEMPLATE}/${path}/${newVersion}/templates/"
-        sh "aws s3 cp cloudformation/template/cloudformation.yml s3://${S3_BUCKET_TEMPLATE}/${path}/${newVersion}/templates/"
+        echo "upload template to s3://${S3_BUCKET_TEMPLATE}/${folder}/${newVersion}/templates/"
+        sh "aws s3 cp cloudformation/template/cloudformation.yml s3://${S3_BUCKET_TEMPLATE}/${folder}/${newVersion}/templates/"
     }
 }
 
-def void uploadParameter(String S3_BUCKET_TEMPLATE, String newVersion, String path){
+def void uploadParameter(String S3_BUCKET_TEMPLATE, String newVersion, String folder){
     script{
-        echo "upload parameter files to s3://${env.S3_BUCKET_TEMPLATE}/${path}/${newVersion}/parameters/"
-        sh "aws s3 sync cloudformation/parameters/ s3://${env.S3_BUCKET_TEMPLATE}/${path}/${newVersion}/parameters/"
+        echo "upload parameter files to s3://${env.S3_BUCKET_TEMPLATE}/${folder}/${newVersion}/parameters/"
+        sh "aws s3 sync cloudformation/parameters/ s3://${env.S3_BUCKET_TEMPLATE}/${folder}/${newVersion}/parameters/"
     }
 }

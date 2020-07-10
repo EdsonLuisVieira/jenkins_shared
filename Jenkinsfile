@@ -12,6 +12,6 @@ pipelineDefault ([
         arquitetura: 'dev',
         jobid: '222.222.222.22',
         arquitetura: '111',
-        path: 'developer',
+        folder: 'developer',
         sam: 'false'
 ])

@@ -30,7 +30,7 @@ def call(Map stageParams) {
                     echo stageParams.build_name
                     echo stageParams.arquitetura
                     echo stageParams.jobid
-                    echo stageParams.path
+                    echo stageParams.folder
                 }
             }
         }
@@ -96,8 +96,8 @@ def call(Map stageParams) {
             steps {
                 script{
                     if (stageParams.RUN_PRE_BUILD == 'true'){
-                        cf.uploadTemplate(stageParams.S3_BUCKET_TEMPLATE,newVersion,stageParams.path)
-                        //cf.uploadParameter(stageParams.S3_BUCKET_TEMPLATE,newVersion,stageParams.path)
+                        cf.uploadTemplate(stageParams.S3_BUCKET_TEMPLATE,newVersion,stageParams.folder)
+                        //cf.uploadParameter(stageParams.S3_BUCKET_TEMPLATE,newVersion,stageParams.folder)
                     } else {
                         echo "pulou upload"
                     }
@@ -110,7 +110,7 @@ def call(Map stageParams) {
                     echo "run deploy"
                     echo RUN_DEPLOY
                     if (RUN_DEPLOY == 'true'){
-                        rundeck.rundeck(stageParams.jobid,stageParams.arquitetura,newVersion,stageParams.path)
+                        rundeck.rundeck(stageParams.jobid,stageParams.arquitetura,newVersion,stageParams.folder)
                     }
                 }
             }
@@ -119,7 +119,7 @@ def call(Map stageParams) {
         post {
             success {
                 script{
-                    notify.notifyBuild('SUCCESSFUL',stageParams.channel,newVersion,stageParams.path)
+                    notify.notifyBuild('SUCCESSFUL',stageParams.channel,newVersion,stageParams.folder)
                     echo "success"
                 }
             }
