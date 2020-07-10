@@ -16,7 +16,7 @@ def void commitMessage(){
 
 def void checkbranchName(){
     script {
-        if ( GIT_BRANCH == ("origin/master")) {
+        if ( GIT_BRANCH == ("origin/v2")) {
             echo "***** Let's go to the Build *****"
 
         } else {
@@ -94,7 +94,7 @@ def Map prebuild() {
           stack_name = sh(script: '''
                                echo $(git remote -v |grep fetch |sed -r 's,.*\\.com:[^/]*/(.*)\\.git.*,\\1,')
                                ''', returnStdout: true).trim()
-          if (GIT_BRANCH == ("origin/master")) {
+          if (GIT_BRANCH == ("origin/v2")) {
               echo "***** PERFORMING STEPS ON MASTER *****"
               resultPreBuild["newVersion"] = updateVersion(true)
               resultPreBuild["RUN_DEPLOY"] = "false"
