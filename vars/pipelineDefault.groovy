@@ -96,8 +96,8 @@ def call(Map stageParams) {
             steps {
                 script{
                     if (stageParams.RUN_PRE_BUILD == 'true'){
-                        uploadTemplate(stageParams.S3_BUCKET_TEMPLATE,newVersion,stageParams.path)
-                        //uploadParameter(stageParams.S3_BUCKET_TEMPLATE,newVersion,stageParams.path)
+                        cf.uploadTemplate(stageParams.S3_BUCKET_TEMPLATE,newVersion,stageParams.path)
+                        //cf.uploadParameter(stageParams.S3_BUCKET_TEMPLATE,newVersion,stageParams.path)
                     } else {
                         echo "pulou upload"
                     }
