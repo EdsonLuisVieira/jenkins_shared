@@ -97,7 +97,7 @@ def Map prebuild() {
           if (GIT_BRANCH == ("origin/v2")) {
               echo "***** PERFORMING STEPS ON MASTER *****"
               resultPreBuild["newVersion"] = updateVersion(true)
-              resultPreBuild["RUN_DEPLOY"] = "false"
+              resultPreBuild["RUN_DEPLOY"] = "true"
 
           }
           if (GIT_BRANCH == ("origin/develop")) {
