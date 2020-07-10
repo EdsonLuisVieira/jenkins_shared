@@ -68,8 +68,7 @@ def String version_code_tag() {
         sh "git fetch --tags"
         bumpci_tag = sh(script: '''
             current_tag=`git tag -n9 -l |grep version |awk '{print $1}' |sort -V |tail -1`
-            if [[ $current_tag == '' ]]
-              then
+            if [ -z $current_tag ]; then
                 current_tag=0.0.1
             fi
             echo ${current_tag}
