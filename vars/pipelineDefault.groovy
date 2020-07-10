@@ -108,6 +108,7 @@ def call(Map stageParams) {
             steps{
                 script{
                     if (RUN_DEPLOY == 'true'){
+                        echo RUN_DEPLOY
                         rundeck.rundeck(stageParams.jobid,stageParams.arquitetura,newVersion,stageParams.path)
                     }
                 }
