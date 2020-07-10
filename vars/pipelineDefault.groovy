@@ -85,8 +85,10 @@ def call(Map stageParams) {
         }
         stage('sam'){
             steps {
-                if (stageParams.sam == 'true'){
-                    script {cf.sam(stageParams.S3_BUCKET_ARTIFACT)}
+                script {
+                    if (stageParams.sam == 'true'){
+                        cf.sam(stageParams.S3_BUCKET_ARTIFACT)}
+                    }
                 }
             }
         }
