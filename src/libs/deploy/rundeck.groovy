@@ -13,7 +13,7 @@ def void rundeck(String jobid, String arquitetura, String newVersion = '0.0.0', 
                     version=${newVersion}
                     path=${path}
                     """,
-            rundeckInstance: "rundeck.devtools.caradhras.io",
+            rundeckInstance: "rundeckTest",
             shouldFailTheBuild: true,
             shouldWaitForRundeckJob: true,
             tags: "",
