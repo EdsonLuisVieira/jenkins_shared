@@ -1,6 +1,5 @@
 #!groovy
-def call(String stageParams) {
-    echo stageParams
+def call() {
     
 pipeline {
    agent any
