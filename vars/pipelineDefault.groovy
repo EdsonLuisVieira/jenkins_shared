@@ -132,7 +132,7 @@ def call(Map stageParams) {
                 script{
                     //notify.notifyBuild('FAILED')
                     //echo "failure"
-                    build job: 'ggg'
+                    build job: echomap('dev')
                 }
             }
             aborted {
