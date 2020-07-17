@@ -4,7 +4,7 @@ import net.sf.json.JSONArray
 import net.sf.json.JSONObject
 
 
-def void notifyBuild(String buildStatus = 'STARTED', String channel = 'jenkins' , String newVersion = '0.0.0', String path = 'default') {
+def void notifyBuild(String buildStatus = 'STARTED', String channel = 'jenkins' , String newVersion = '0.0.0', String folder = 'default') {
     buildStatus = buildStatus ?: 'SUCCESSFUL'
     String colorCode = '#FF0000'
     String subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
@@ -36,7 +36,7 @@ def void notifyBuild(String buildStatus = 'STARTED', String channel = 'jenkins' 
         fields.add(field);
 
         field.put('title', 'Path');
-        field.put('value', path);
+        field.put('value', folder);
         fields.add(field);
 
         attachment.put('fields',fields);

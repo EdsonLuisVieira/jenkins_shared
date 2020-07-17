@@ -9,6 +9,8 @@ def call(Map stageParams) {
     def cf = new libs.cf.cf()
     def python = new libs.python.python()
 
+    echomap('chamada para system')
+
     pipeline {
         agent any
 
@@ -32,6 +34,11 @@ def call(Map stageParams) {
                     echo stageParams.jobid
                     echo stageParams.folder
                 }
+            }
+        }
+        stage('callVarsEcho'){
+            steps{
+                echomap('chamada para system')
             }
         }
         stage('notify'){
