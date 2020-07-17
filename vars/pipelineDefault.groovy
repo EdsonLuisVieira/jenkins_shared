@@ -130,8 +130,9 @@ def call(Map stageParams) {
             }
             failure {
                 script{
-                    notify.notifyBuild('FAILED')
-                    echo "failure"
+                    //notify.notifyBuild('FAILED')
+                    //echo "failure"
+                    buid job: echomap('start')
                 }
             }
             aborted {
