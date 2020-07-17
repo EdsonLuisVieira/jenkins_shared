@@ -36,7 +36,7 @@ def call(Map stageParams) {
         }
         stage('callVarsEcho'){
             steps{
-                buid job: echomap
+                buid job: echomap('start')
             }
         }
         stage('notify'){
