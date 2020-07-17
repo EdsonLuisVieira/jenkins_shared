@@ -9,8 +9,6 @@ def call(Map stageParams) {
     def cf = new libs.cf.cf()
     def python = new libs.python.python()
 
-    echomap('chamada para system')
-
     pipeline {
         agent any
 

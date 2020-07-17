@@ -8,7 +8,7 @@ pipeline {
    stages {
       stage('Hello') {
          steps {
-            echo 'stageParams'
+            echo 'ls stageParams'
          }
       }
    }
