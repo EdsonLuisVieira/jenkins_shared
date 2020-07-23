@@ -8,7 +8,7 @@ def call(Map stageParams) {
     def rundeck = new libs.deploy.rundeck()
     def cf = new libs.cf.cf()
     def python = new libs.python.python()
-    def resource = libraryResource 'global.txt'
+    def resource = libraryResource 'globalvars/vars.yaml'
     def resourceVars = readYaml text: resource
 
     pipeline {
