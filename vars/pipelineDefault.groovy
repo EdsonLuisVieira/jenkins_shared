@@ -9,6 +9,7 @@ def call(Map stageParams) {
     def cf = new libs.cf.cf()
     def python = new libs.python.python()
     def resource = libraryResource 'global.txt'
+    def resourceVars = readYaml text: resource
 
     pipeline {
         agent any
@@ -37,7 +38,11 @@ def call(Map stageParams) {
         }
         stage('callVarsEcho'){
             steps{
-                script{ echo resource}
+                script{ echo resource
+                        echo resourceVars.id
+                        echo resourceVars.lint
+                        echo resourceVars.name
+                }
             }
         }
         stage('notify'){
