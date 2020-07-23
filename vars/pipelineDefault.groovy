@@ -38,9 +38,13 @@ def call(Map stageParams) {
         }
         stage('callVarsEcho'){
             steps{
-                script{ echo resource
+                script{ echo "resource completo"
+                        echo resource
+                        echo "id vindo de resource"
                         echo resourceVars.id
+                        echo "lint vindo do resource"
                         echo resourceVars.lint
+                        echo "name vindo do resource"
                         echo resourceVars.name
                 }
             }
