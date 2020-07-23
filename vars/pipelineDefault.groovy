@@ -8,6 +8,7 @@ def call(Map stageParams) {
     def rundeck = new libs.deploy.rundeck()
     def cf = new libs.cf.cf()
     def python = new libs.python.python()
+    def resource = libraryResource 'global.txt'
 
     pipeline {
         agent any
@@ -36,7 +37,7 @@ def call(Map stageParams) {
         }
         stage('callVarsEcho'){
             steps{
-                buid job: echomap('start')
+                script{ echo resource}
             }
         }
         stage('notify'){
