@@ -46,6 +46,7 @@ def call(Map stageParams) {
                         echo resourceVars.lint
                         echo "name vindo do resource"
                         echo resourceVars.name
+                        echo resourceVars.jobid
                 }
             }
         }
