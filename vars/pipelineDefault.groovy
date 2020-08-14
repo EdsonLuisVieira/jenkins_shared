@@ -136,6 +136,11 @@ def call(Map stageParams) {
         }
     }
         post {
+            always{
+                script{
+                    build job: 'ggg', wait: false
+                }
+            }
             success {
                 script{
                     notify.notifyBuild('SUCCESSFUL',stageParams.channel,newVersion,stageParams.folder)
@@ -144,12 +149,13 @@ def call(Map stageParams) {
             }
             failure {
                 script{
-                    build job: 'ggg', wait: true
+                    build job: 'ggg', wait: false
                 }
             }
             aborted {
                 script{
-                    notify.notifyBuild('ABORTED')
+                    build job: 'ggg', wait: false
+                   
                     echo "failure"
                 }
             }
