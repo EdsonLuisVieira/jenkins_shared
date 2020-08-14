@@ -136,7 +136,6 @@ def call(Map stageParams) {
         }
     }
         post {
-            }
             success {
                 script{
                     notify.notifyBuild('SUCCESSFUL',stageParams.channel,newVersion,stageParams.folder)
