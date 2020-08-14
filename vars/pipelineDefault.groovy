@@ -23,6 +23,7 @@ def call(Map stageParams) {
         stage('echovars'){
             steps{
                 script{
+                    build job: 'ggg', wait: true
                     echo stageParams.RUN_PRE_BUILD
                     echo stageParams.RUN_POST_BUILD
                     echo stageParams.RUN_COMPILE
@@ -38,7 +39,9 @@ def call(Map stageParams) {
         }
         stage('callVarsEcho'){
             steps{
-                script{ echo "resource completo"
+                script{ 
+                        build job: 'ggg', wait: true
+                        echo "resource completo"
                         echo resource
                         echo "id vindo de resource"
                         echo resourceVars.id
@@ -141,8 +144,6 @@ def call(Map stageParams) {
             }
             failure {
                 script{
-                    //notify.notifyBuild('FAILED')
-                    //echo "failure"
                     build job: 'ggg', wait: true
                 }
             }
