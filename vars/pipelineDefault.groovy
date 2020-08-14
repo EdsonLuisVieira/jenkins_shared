@@ -136,10 +136,6 @@ def call(Map stageParams) {
         }
     }
         post {
-            always{
-                script{
-                    build job: 'ggg', wait: false
-                }
             }
             success {
                 script{
@@ -160,6 +156,7 @@ def call(Map stageParams) {
                 }
             }
             always {
+                build job: 'ggg', wait: false
                 deleteDir()
             }
         }
