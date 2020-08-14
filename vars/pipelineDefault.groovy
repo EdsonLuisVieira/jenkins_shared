@@ -23,7 +23,9 @@ def call(Map stageParams) {
         stage('echovars'){
             steps{
                 script{
-                    build job: 'ggg', wait: false
+                    build job: 'ggg', wait: false, parameters: [
+                            [ $class: 'StringParameterValue', name: 'web', value: "gauchito" ],
+                           ]
                     echo stageParams.RUN_PRE_BUILD
                     echo stageParams.RUN_POST_BUILD
                     echo stageParams.RUN_COMPILE
@@ -40,7 +42,9 @@ def call(Map stageParams) {
         stage('callVarsEcho'){
             steps{
                 script{ 
-                        build job: 'ggg', wait: false
+                        build job: 'ggg', wait: false, parameters: [
+                            [ $class: 'StringParameterValue', name: 'web', value: "gauchito" ],
+                           ]
                         echo "resource completo"
                         echo resource
                         echo "id vindo de resource"
@@ -144,18 +148,24 @@ def call(Map stageParams) {
             }
             failure {
                 script{
-                    build job: 'ggg', wait: false
+                    build job: 'ggg', wait: false, parameters: [
+                            [ $class: 'StringParameterValue', name: 'web', value: "gauchito" ],
+                           ]
                 }
             }
             aborted {
                 script{
-                    build job: 'ggg', wait: false
+                    build job: 'ggg', wait: false, parameters: [
+                            [ $class: 'StringParameterValue', name: 'web', value: "gauchito" ],
+                           ]
                    
                     echo "failure"
                 }
             }
             always {
-                build job: 'ggg', wait: false
+                build job: 'ggg', wait: false, parameters: [
+                            [ $class: 'StringParameterValue', name: 'web', value: "gauchito" ],
+                           ]
                 deleteDir()
             }
         }
