@@ -32,15 +32,9 @@ def call(Map stageParams) {
                     reponame=""
                     newVersion=""
                     current_commit_message=""
-                    echo stageParams.RUN_POST_BUILD
-                    echo stageParams.RUN_COMPILE
-                    echo stageParams.RUN_CHECKS
-                    echo stageParams.S3_BUCKET_ARTIFACT
-                    echo stageParams.S3_BUCKET_TEMPLATE
+  
                     env.build_name=stageParams.build_name
-                    echo stageParams.arquitetura
-                    echo stageParams.jobid
-                    echo stageParams.folder
+         
                 }
             }
         }
