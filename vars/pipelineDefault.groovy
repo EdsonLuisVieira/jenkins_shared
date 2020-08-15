@@ -6,7 +6,7 @@ def call(Map stageParams) {
     def git = new libs.git.git()
     def notify = new libs.notify.slack()
     def rundeck = new libs.deploy.rundeck()
-    def cf = new libs.cf.cf()
+    def build = new libs.cf.cf()
     def python = new libs.python.python()
     def resource = libraryResource 'globalvars/vars.yaml'
     def resourceVars = readYaml text: resource
