@@ -30,6 +30,7 @@ def call(Map stageParams) {
                     environment=""
                     jobId=""
                     reponame=""
+                    newVersion=""
                     current_commit_message=""
                     echo stageParams.RUN_POST_BUILD
                     echo stageParams.RUN_COMPILE
