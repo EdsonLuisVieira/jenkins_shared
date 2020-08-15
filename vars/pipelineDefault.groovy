@@ -142,10 +142,12 @@ def call(Map stageParams) {
             }
             always {
                 script{
+                    if (stageParams.RUN_PRE_BUILD == true){
                     build job: 'Deploy', wait: false, parameters: [
                             [ $class: 'StringParameterValue', name: 'web', value: "gauchito" ],
                             [ $class: 'StringParameterValue', name: 'buidname', value: "${env.build_name}" ],
                            ]
+                    }
                 }
                 deleteDir()
             }
