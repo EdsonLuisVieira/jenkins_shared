@@ -23,7 +23,14 @@ def call(Map stageParams) {
         stage('echovars'){
             steps{
                 script{
-                    echo stageParams.RUN_PRE_BUILD
+                    RUN_DEPLOY_PRD=""
+                    RUN_DEPLOY_HML=""
+                    RUN_DEPLOY_DEV=""
+                    RUN_HOTFIX=""
+                    environment=""
+                    jobId=""
+                    reponame=""
+                    current_commit_message=""
                     echo stageParams.RUN_POST_BUILD
                     echo stageParams.RUN_COMPILE
                     echo stageParams.RUN_CHECKS
