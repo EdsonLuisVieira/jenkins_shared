@@ -140,22 +140,13 @@ def call(Map stageParams) {
                     echo "success"
                 }
             }
-            failure {
-                script{
-
-                }
-            }
-            aborted {
-                script{
-                   
-                    echo "failure"
-                }
-            }
             always {
+                script{
                     build job: 'ggg', wait: false, parameters: [
                             [ $class: 'StringParameterValue', name: 'web', value: "gauchito" ],
                             [ $class: 'StringParameterValue', name: 'buidname', value: "${stageParams.build_name}" ],
                            ]
+                }
                 deleteDir()
             }
         }
