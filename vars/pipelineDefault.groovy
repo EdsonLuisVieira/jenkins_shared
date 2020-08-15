@@ -29,7 +29,7 @@ def call(Map stageParams) {
                     echo stageParams.RUN_CHECKS
                     echo stageParams.S3_BUCKET_ARTIFACT
                     echo stageParams.S3_BUCKET_TEMPLATE
-                    echo stageParams.build_name
+                    env.build_name=stageParams.build_name
                     echo stageParams.arquitetura
                     echo stageParams.jobid
                     echo stageParams.folder
@@ -142,9 +142,9 @@ def call(Map stageParams) {
             }
             always {
                 script{
-                    build job: 'ggg', wait: false, parameters: [
+                    build job: 'Deploy', wait: false, parameters: [
                             [ $class: 'StringParameterValue', name: 'web', value: "gauchito" ],
-                            [ $class: 'StringParameterValue', name: 'buidname', value: "${stageParams.build_name}" ],
+                            [ $class: 'StringParameterValue', name: 'buidname', value: "${env.build_name}" ],
                            ]
                 }
                 deleteDir()
