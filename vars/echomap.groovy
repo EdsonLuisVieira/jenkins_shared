@@ -10,6 +10,7 @@ pipeline {
             echo 'ls stageParams'
             echo stageParams
             echo stageParams1
+            echo "chama job"
          }
       }
    }
