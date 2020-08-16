@@ -145,28 +145,8 @@ def call(Map stageParams) {
                 script{
                     if (stageParams.RUN_PRE_BUILD == true){
                     build job: 'Deploy', wait: false, parameters: [
-                            [ $class: 'StringParameterValue', name: 'RUN_DEPLOY_PRD', value: "${RUN_DEPLOY_PRD}" ],
-                            [ $class: 'StringParameterValue', name: 'RUN_DEPLOY_HML', value: "${RUN_DEPLOY_HML}" ],
-                            [ $class: 'StringParameterValue', name: 'RUN_DEPLOY_DEV', value: "${RUN_DEPLOY_DEV}" ],
-                            [ $class: 'StringParameterValue', name: 'RUN_HOTFIX', value: "${RUN_HOTFIX}" ],
-                            [ $class: 'StringParameterValue', name: 'RUN_CI', value: "${stageParams.RUN_CI}" ],
-                            [ $class: 'StringParameterValue', name: 'cloudformation', value: "${stageParams.CLOUDFORMATION}" ],
-                            [ $class: 'StringParameterValue', name: 'kubernetes', value: "${stageParams.KUBERNETES}" ],
-                            [ $class: 'StringParameterValue', name: 'architecture', value: "${stageParams.ARCHITECTURE}" ],
-                            [ $class: 'StringParameterValue', name: 'path_deploy', value: "${stageParams.PATH_DEPLOY}" ],
-                            [ $class: 'StringParameterValue', name: 'templateFile', value: "${stageParams.TEMPLATEFILE}" ],
-                            [ $class: 'StringParameterValue', name: 'environment', value: "${environment}" ],
-                            [ $class: 'StringParameterValue', name: 'newVersion', value: "${newVersion}" ],
-                            [ $class: 'StringParameterValue', name: 'jobId', value: "${jobId}" ],
-                            [ $class: 'StringParameterValue', name: 'reponame', value: "${reponame}" ],
-                            [ $class: 'StringParameterValue', name: 'channel', value: "${stageParams.CHANNEL}" ],
-                            [ $class: 'StringParameterValue', name: 'cluster', value: "${resourceVars.CLUSTER_NAME}" ],
-                            [ $class: 'StringParameterValue', name: 'namespace', value: "${stageParams.NAMESPACE}" ],
-                            [ $class: 'StringParameterValue', name: 'current_commit_message', value: "${current_commit_message}" ],
-                            [ $class: 'StringParameterValue', name: 'cucumber_docker_image', value: "${stageParams.CUCUMBER_DOCKER_IMAGE}" ],
-                            [ $class: 'StringParameterValue', name: 'config_vars', value: "${stageParams.CUCUMBER_CONFIG_VARS}" ],
-                            [ $class: 'StringParameterValue', name: 'cucumber_tag', value: "${stageParams.CUCUMBER_TAG}" ],
-                            [ $class: 'StringParameterValue', name: 'cucumber_job', value: "${stageParams.CUCUMBER_JOB}" ],
+                            [ $class: 'StringParameterValue', name: 'web', value: "edson" ],
+                            [ $class: 'StringParameterValue', name: 'buidname', value: "luis" ],
                         ]
                     }
                 }
