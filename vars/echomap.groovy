@@ -1,5 +1,5 @@
 #!groovy
-def call(String stageParams, String stageParams1) {
+def call(Map stageParams) {
     
 pipeline {
    agent any
@@ -8,8 +8,8 @@ pipeline {
       stage('Hello') {
          steps {
             echo 'ls stageParams'
-            echo stageParams
-            echo stageParams1
+            echo stageParams.web
+            echo stageParams1.buidname
             echo "chama job"
          }
       }
