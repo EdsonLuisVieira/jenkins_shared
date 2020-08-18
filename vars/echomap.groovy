@@ -9,7 +9,7 @@ pipeline {
          steps {
             echo 'ls stageParams'
             echo stageParams.web
-            echo stageParams1.buidname
+            echo stageParams.buidname
             echo "chama job"
          }
       }
