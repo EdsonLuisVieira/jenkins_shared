@@ -49,6 +49,7 @@ def call(Map stageParams) {
                         echo "name vindo do resource"
                         echo resourceVars.name
                         echo resourceVars.jobid
+                        echo resourceVars.branch
                 }
             }
         }
